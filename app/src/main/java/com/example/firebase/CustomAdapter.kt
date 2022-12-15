@@ -2,6 +2,7 @@ package com.example.firebase
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
-class CustomAdapter (private var context: Context, var usuaioss: ArrayList<Usuario>?) :
+class
+CustomAdapter (private var context: Context, var usuaioss: ArrayList<Usuario>?) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
     var alumnosOriginales = usuaioss
     private val db = Firebase.firestore
@@ -26,11 +28,16 @@ class CustomAdapter (private var context: Context, var usuaioss: ArrayList<Usuar
         viewHolder: ViewHolder,
         @SuppressLint("RecyclerView") position: Int
     ) {
-        viewHolder.textView.text = usuaioss!![position].nombre
-        viewHolder.textView2.text = "telefono: ${usuaioss!![position].apellido}"
-        viewHolder.textView3.text = "correo: " + usuaioss!![position].numero
+        viewHolder.textView.text = "nombre: "+usuaioss!![position].nombre
+        viewHolder.textView2.text = "apelldio: ${usuaioss!![position].apellido}"
+        viewHolder.textView3.text = "numero: " + usuaioss!![position].numero
         viewHolder.card.setOnClickListener {
-            Toast.makeText(context, "click ", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "click "+ usuaioss!![position].nombre, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, EBUser::class.java)
+            intent.putExtra("nombre", usuaioss!![position].nombre)
+            intent.putExtra("apellido", usuaioss!![position].apellido)
+            intent.putExtra("numero", usuaioss!![position].numero)
+            context.startActivity(intent)
 
         }
     /*

@@ -1,14 +1,15 @@
 package com.example.firebase
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firebase.databinding.ActivityMainBinding
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+
 
 class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
@@ -29,7 +30,8 @@ class MainActivity : AppCompatActivity() {
             }
             var customAdapter=CustomAdapter(applicationContext, user)
             binding.recycler.adapter=customAdapter
-            binding.recycler.layoutManager=LinearLayoutManager(applicationContext)
+            val layoutManager = GridLayoutManager(applicationContext, 2)
+            binding.recycler.layoutManager=layoutManager
 
         }
             .addOnFailureListener {
@@ -37,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             }
         binding.button.setOnClickListener {
             startActivity(Intent(applicationContext, RegistroUsuario::class.java))
+            finish()
         }
     }
 

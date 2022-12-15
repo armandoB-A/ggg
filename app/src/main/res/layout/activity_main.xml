@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="center|top"
     android:layout_margin="11dp"
     tools:context=".MainActivity">
 
@@ -13,11 +13,13 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         tools:listitem="@layout/item_user">
 
     </androidx.recyclerview.widget.RecyclerView>
     <Button
         android:id="@+id/button"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="añadir usuario" />
